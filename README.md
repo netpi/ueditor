@@ -6,11 +6,12 @@
 ueditor for nodejs 可以让你的UEditor支持nodejs 
 
 
+###ueditor@0.0.4支持图片上传，图片批量管理等
 
 ##Installation
 
 ```
- npm install ueditor
+ npm install ueditor --save
 
 ```
 
@@ -41,4 +42,4 @@ ueditor(app, config_json_url, router_path, static_dir, visit_dir_path)
 ueditor(app,"/ueditor/config.json","/",path.join(__dirname, 'public'),"/upload")
 
 ```
->email : netpi@foxmail.com
+>netpi@foxmail.com
