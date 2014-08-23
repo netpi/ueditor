@@ -47,6 +47,7 @@ var router_path="/"
 var statci_dir=path.join(__dirname, 'public')
 ```
 #####5 visit_dir_path 您要保存图片的文件夹路径
+##Example
 ```javascript
 var ueditor=require('ueditor');
 
