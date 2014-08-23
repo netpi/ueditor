@@ -1,7 +1,7 @@
 {
   "name": "ueditor",
   "decription": "nodejs for ueditor",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "dependencies": {
     "fs-extra": "^0.11.0"
   },
