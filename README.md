@@ -22,17 +22,18 @@ ueditor(app, config_json_url, router_path, static_dir, visit_dir_path)
 
 
 1,app => var app = express();
+
 2,config_json_url => config.json  //you can find this in the UEditor demo
+
 3,router_path => you should edit 'ueditor.config.js' in the UEditor demo
 
  example : 
-   
-  if  UEDITOR_HOME_URL: URL
-  then router_path will be "/"
-static_dir => path.join(__dirname, 'public')
-
-
+  open the file ueditor.config.js
+  if  you edit => UEDITOR_HOME_URL: URL
+  the router_path should be  "/"
+----------------------------------------
 4,static_dir => path.join(__dirname, 'public')
+
 5,visit_dir_path => visit_dir_path is your img visit path 
 */
 
