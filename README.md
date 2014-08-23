@@ -15,7 +15,7 @@ ueditor for nodejs 可以让你的UEditor支持nodejs
 ```
 
 ##Usage
-```
+```javascript
 var ueditor=require('ueditor');
 /*
 ueditor(app, config_json_url, router_path, static_dir, visit_dir_path)
