@@ -6,7 +6,7 @@
 ueditor for nodejs 可以让你的UEditor支持nodejs 
 
 
-###ueditor@0.0.4支持图片上传，图片批量管理等
+###ueditor@0.0.4以及更高版本,支持图片上传，图片批量管理等
 
 ##Installation
 
@@ -75,4 +75,5 @@ var ueditor=require('ueditor');
 ueditor(app,"/ueditor/config.json","/",path.join(__dirname, 'public'),"/upload")
 
 ```
+###浏览器端配置参考参考[UEditor](https://github.com/fex-team/ueditor)
 >netpi@foxmail.com
