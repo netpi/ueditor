@@ -1,6 +1,6 @@
 #Node.js : ueditor
 
-![logo](http://pistore.qiniudn.com/bgu4.jpg)
+
 
 [UEditor](https://github.com/fex-team/ueditor) 官方支持的版本有PHP JSP ASP .NET.
 
