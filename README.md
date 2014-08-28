@@ -79,5 +79,5 @@ var ueditor=require('ueditor');
 ueditor(app,"/ueditor/config.json","/",path.join(__dirname, 'public'),"/upload")
 
 ```
-###浏览器端配置参考参考[UEditor](https://github.com/fex-team/ueditor)
+###浏览器端配置参考[UEditor](https://github.com/fex-team/ueditor)
 >netpi@foxmail.com
