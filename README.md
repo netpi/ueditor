@@ -22,7 +22,6 @@ ueditor for nodejs 可以让你的UEditor支持nodejs
 ```javascript
 var ueditor = require("ueditor")
 /*
-
   ...
 
 */
