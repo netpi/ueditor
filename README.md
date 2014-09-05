@@ -28,10 +28,13 @@ var ueditor = require("ueditor")
 ueditor(app, config_json_url, router_path, static_dir, visit_dir_path)
 
 ```
+#### 参数配置
+
+
 #####1 ``` app=express(); ```
 
 
-#####2 你的[config_json](https://github.com/netpi/ueditor-1/blob/dev-1.5.0/php/config.json) 文件的存放路径
+#####2 config_json_url => 你的[config_json](https://github.com/netpi/ueditor-1/blob/dev-1.5.0/php/config.json) 文件的存放路径
 
 
 #####3 router_path=>如果[ueditor.config.js](https://github.com/netpi/ueditor-1/blob/dev-1.5.0/ueditor.config.js)  的配置为:
