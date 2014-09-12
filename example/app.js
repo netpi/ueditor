@@ -5,7 +5,7 @@ var ueditor=require('ueditor');
 
 var ejs = require('ejs');
 var app = express();
-// all environments
+
 app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
 
@@ -17,12 +17,9 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.bodyParser());
 
-// console.log("auth="+ app.use(express.basicAuth('uname','password')));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-// app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/",function (req,res) {
