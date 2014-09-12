@@ -8,7 +8,7 @@ var app = express();
 // all environments
 app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
-app.set
+
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
