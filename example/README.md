@@ -1,2 +1,2 @@
-###USAGE
+###Usage
 npm install
