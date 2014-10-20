@@ -83,5 +83,6 @@ ueditor(app,"/ueditor/config.json","/",path.join(__dirname, 'public'),"/upload")
 ```
 ###浏览器端配置参考[UEditor](https://github.com/fex-team/ueditor)
 
-作者博客 ：[Netpi](http://blog.netpi.me)
+作者博客 ：[Netpi 日志](http://blog.netpi.me)
+
 公    司 ：[圆周率网络](http://i-pi.cc)
