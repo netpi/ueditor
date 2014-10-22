@@ -82,5 +82,5 @@ app.use("/ueditor", ueditor(path.join(__dirname, 'public'), function(req, res, n
 
 ```
 
-你可以来[ueditor:nodejs](http://blog.netpi.me/nodejs/ueditor_nodejs)给作者留言
+你可以来[ueditor:nodejs](http://blog.netpi.me/nodejs/ueditor-nodejs)给作者留言
 
