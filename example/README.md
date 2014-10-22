@@ -1,2 +1,0 @@
-###Usage
-npm install
