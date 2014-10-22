@@ -19,6 +19,7 @@ ueditor for nodejs 可以让你的UEditor支持nodejs
 
 ```javascript
 
+ 
 var bodyParser = require('body-parser')
 var ueditor = require("ueditor")
 app.use(bodyParser.urlencoded({
@@ -26,6 +27,9 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json());
 
+// /ueditor 入口地址配置 https://github.com/fex-team/ueditor/blob/dev-1.5.0/ueditor.config.js
+// 官方例子是这样的 serverUrl: URL + "php/controller.php"
+// 我们要把它改成 serverUrl: URL 
 app.use("/ueditor", ueditor(path.join(__dirname, 'public'), function(req, res, next) {
 
   // ueditor 客户发起上传图片请求
