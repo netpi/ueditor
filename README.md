@@ -56,7 +56,7 @@ app.use("/ueditor", ueditor(path.join(__dirname, 'public'), function(req, res, n
 
     res.setHeader('Content-Type', 'application/json');
     // 这里填写 ueditor.config.json 这个文件的路径
-    res.redirect('/ueditor/ueditor.config.json}
+    res.redirect('/ueditor/ueditor.config.json')
 }));
 
 ```
@@ -89,7 +89,7 @@ app.use("/ueditor", ueditor(path.join(__dirname, 'public'), function(req, res, n
   else {
 
     res.setHeader('Content-Type', 'application/json');
-    res.redirect('/ueditor/ueditor.config.json}
+    res.redirect('/ueditor/ueditor.config.json')
 }));
 
 ```
