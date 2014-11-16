@@ -27,10 +27,10 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json());
 
-// /ueditor 入口地址配置 https://github.com/fex-team/ueditor/blob/dev-1.5.0/ueditor.config.js
+// /ueditor 入口地址配置 https://github.com/netpi/ueditor/blob/master/example/public/ueditor/ueditor.config.js
 // 官方例子是这样的 serverUrl: URL + "php/controller.php"
-// 我们要把它改成 serverUrl: URL
-app.use("/ueditor", ueditor(path.join(__dirname, 'public'), function(req, res, next) {
+// 我们要把它改成 serverUrl: URL + 'ue'
+app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function(req, res, next) {
 
   // ueditor 客户发起上传图片请求
 
@@ -57,7 +57,7 @@ app.use("/ueditor", ueditor(path.join(__dirname, 'public'), function(req, res, n
     res.setHeader('Content-Type', 'application/json');
     // 这里填写 ueditor.config.json 这个文件的路径
     res.redirect('/ueditor/ueditor.config.json')
-}));
+}}));
 
 ```
 ##Example
@@ -70,7 +70,7 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json());
 
-app.use("/ueditor", ueditor(path.join(__dirname, 'public'), function(req, res, next) {
+app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function(req, res, next) {
   // ueditor 客户发起上传图片请求
   if(req.query.action === 'uploadimage'){
     var foo = req.ueditor;
