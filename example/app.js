@@ -20,8 +20,6 @@ app.set('view engine', 'html');
 
 app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function(req, res, next) {
     // ueditor 客户发起上传图片请求
-    console.log('ueditor')
-    // console.log(req.query)
     if (req.query.action === 'uploadimage') {
         var foo = req.ueditor;
         var date = new Date();

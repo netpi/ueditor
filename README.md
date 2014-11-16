@@ -74,7 +74,7 @@ app.use("/ueditor", ueditor(path.join(__dirname, 'public'), function(req, res, n
   // ueditor 客户发起上传图片请求
   if(req.query.action === 'uploadimage'){
     var foo = req.ueditor;
-    var date = new Data();
+    var date = new Date();
     var imgname = req.ueditor.filename;
 
     var img_url = '/images/ueditor/'+date.getTime()+imgname;
@@ -90,7 +90,7 @@ app.use("/ueditor", ueditor(path.join(__dirname, 'public'), function(req, res, n
 
     res.setHeader('Content-Type', 'application/json');
     res.redirect('/ueditor/ueditor.config.json')
-}));
+}}));
 
 ```
 
