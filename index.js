@@ -68,10 +68,8 @@ var respond = function(static_url, callback) {
         req.ueditor.mimetype = mimetype;
 
         res.ue_up = function(img_url) {
-          var dir = static_url + img_url;
           var tmpdir = path.join(os.tmpDir(), path.basename(filename));
           var name = snowflake.nextId() + path.extname(tmpdir);
-          //目标路径带文件名
           var dest = path.join(static_url, img_url, name);
 
           file.pipe(fs.createWriteStream(tmpdir));
