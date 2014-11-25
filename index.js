@@ -1,8 +1,9 @@
-var Busboy = require('Busboy');
+var Busboy = require('busboy');
 var fs = require('fs');
 var fse = require('fs-extra');
 var os = require('os');
 var path = require('path');
+var snowflake = require('node-snowflake').Snowflake;
 var ueditor = function(static_url, handel) {
   return function(req, res, next) {
     var _respond = respond(static_url, handel);
@@ -67,13 +68,15 @@ var respond = function(static_url, callback) {
         req.ueditor.mimetype = mimetype;
 
         res.ue_up = function(img_url) {
-          var dir = static_url + img_url;
           var tmpdir = path.join(os.tmpDir(), path.basename(filename));
+          var name = snowflake.nextId() + path.extname(tmpdir);
+          var dest = path.join(static_url, img_url, name);
+
           file.pipe(fs.createWriteStream(tmpdir));
-          fse.move(tmpdir, static_url + img_url, function(err) {
+          fse.move(tmpdir, dest, function(err) {
             if (err) throw err;
             res.json({
-              'url': img_url,
+              'url': path.join(img_url, name),
               'title': req.body.pictitle,
               'original': filename,
               'state': 'SUCCESS'
