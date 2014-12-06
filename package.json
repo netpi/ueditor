@@ -4,7 +4,7 @@
   "author": {
     "name": "Night_elf"
   },
-  "version": "1.0.0",
+  "version": "1.1.1",
   "dependencies": {
     "busboy": "^0.2.9",
     "fs-extra": "^0.11.0",
@@ -42,5 +42,5 @@
   },
   "directories": {},
   "_resolved": "https://registry.npmjs.org/ueditor/-/ueditor-1.0.0.tgz",
-  "readme": "ERROR: No README data found!"
+ 
 }
