@@ -7,7 +7,7 @@ var ueditor = require("ueditor");
 var bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({
-  extended: true
+    extended: true
 }));
 app.use(bodyParser.json());
 // view engine setup
@@ -18,15 +18,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
 
-app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function(req, res, next) {
+app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (req, res, next) {
     // ueditor 客户发起上传图片请求
     if (req.query.action === 'uploadimage') {
         var foo = req.ueditor;
-        
+
         var imgname = req.ueditor.filename;
 
-        var img_url = '/images/ueditor/' ;
+        var img_url = '/images/ueditor/';
         res.ue_up(img_url); //你只要输入要保存的地址 。保存操作交给ueditor来做
+        res.setHeader('Content-Type', 'text/html');//IE8下载需要设置返回头尾text/html 不然json返回文件会被直接下载打开
     }
     //  客户端发起图片列表请求
     else if (req.query.action === 'listimage') {
@@ -44,11 +45,11 @@ app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function(req, res
 
 
 
-app.use('/', function(req, res) {
+app.use('/', function (req, res) {
     res.render('ueditor');
 });
 
-app.listen(3000, function() {
+app.listen(3000, function () {
     console.log('app listen : 3000');
 });
 
