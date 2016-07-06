@@ -71,17 +71,19 @@ var respond = function(static_url, callback) {
           var tmpdir = path.join(os.tmpDir(), path.basename(filename));
           var name = snowflake.nextId() + path.extname(tmpdir);
           var dest = path.join(static_url, img_url, name);
-
-          file.pipe(fs.createWriteStream(tmpdir));
-          fse.move(tmpdir, dest, function(err) {
-            if (err) throw err;
-            res.json({
-              'url': path.join(img_url, name),
-              'title': req.body.pictitle,
-              'original': filename,
-              'state': 'SUCCESS'
+          var writeStream = fs.createWriteStream(tmpdir);
+          writeStream.on("close", function () {
+            fse.move(tmpdir, dest, function(err) {
+              if (err) throw err;
+              res.json({
+                'url': path.join(img_url, name),
+                'title': req.body.pictitle,
+                'original': filename,
+                'state': 'SUCCESS'
+              });
             });
           });
+          file.pipe(writeStream);
         };
         callback(req, res, next);
       });
