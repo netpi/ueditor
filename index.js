@@ -70,9 +70,9 @@ var respond = function (static_url, callback) {
           var tmpdir = path.join(os.tmpDir(), path.basename(filename));
           var name = snowflake.nextId() + path.extname(tmpdir);
           var dest = path.join(static_url, img_url, name);
-          var tmp = fs.createWriteStream(tmpdir)
-          file.pipe(tmp);
-          tmp.on('close', function () {
+          var writeStream = fs.createWriteStream(tmpdir);
+          file.pipe(writeStream);
+          writeStream.on("close", function () {
             fse.move(tmpdir, dest, function (err) {
               if (err) throw err;
               res.json({
