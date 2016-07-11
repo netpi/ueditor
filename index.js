@@ -4,27 +4,27 @@ var fse = require('fs-extra');
 var os = require('os');
 var path = require('path');
 var snowflake = require('node-snowflake').Snowflake;
-var ueditor = function(static_url, handel) {
-  return function(req, res, next) {
+var ueditor = function (static_url, handel) {
+  return function (req, res, next) {
     var _respond = respond(static_url, handel);
     _respond(req, res, next);
   };
 };
-var respond = function(static_url, callback) {
-  return function(req, res, next) {
+var respond = function (static_url, callback) {
+  return function (req, res, next) {
     if (req.query.action === 'config') {
       callback(req, res, next);
       return;
     } else if (req.query.action === 'listimage') {
-      res.ue_list = function(list_dir) {
+      res.ue_list = function (list_dir) {
         var str = '';
         var i = 0;
         var list = [];
-        fs.readdir(static_url + list_dir, function(err, files) {
+        fs.readdir(static_url + list_dir, function (err, files) {
           if (err) throw err;
 
           var total = files.length;
-          files.forEach(function(file) {
+          files.forEach(function (file) {
 
             var filetype = 'jpg,png,gif,ico,bmp';
             var tmplist = file.split('.');
@@ -37,7 +37,7 @@ var respond = function(static_url, callback) {
                 temp.url = list_dir + "/" + file;
               }
               list[i] = (temp);
-            } else {}
+            } else { }
             i++;
             // send file name string when all files was processed
             if (i === total) {
@@ -59,21 +59,21 @@ var respond = function(static_url, callback) {
         headers: req.headers
       });
 
-      busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+      busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
         req.ueditor = {};
         req.ueditor.fieldname = fieldname;
         req.ueditor.file = file;
         req.ueditor.filename = filename;
         req.ueditor.encoding = encoding;
         req.ueditor.mimetype = mimetype;
-
-        res.ue_up = function(img_url) {
+        res.ue_up = function (img_url) {
           var tmpdir = path.join(os.tmpDir(), path.basename(filename));
           var name = snowflake.nextId() + path.extname(tmpdir);
           var dest = path.join(static_url, img_url, name);
           var writeStream = fs.createWriteStream(tmpdir);
+          file.pipe(writeStream);
           writeStream.on("close", function () {
-            fse.move(tmpdir, dest, function(err) {
+            fse.move(tmpdir, dest, function (err) {
               if (err) throw err;
               res.json({
                 'url': path.join(img_url, name),
@@ -82,8 +82,7 @@ var respond = function(static_url, callback) {
                 'state': 'SUCCESS'
               });
             });
-          });
-          file.pipe(writeStream);
+          })
         };
         callback(req, res, next);
       });
