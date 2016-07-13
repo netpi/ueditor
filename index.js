@@ -76,7 +76,7 @@ var respond = function (static_url, callback) {
             fse.move(tmpdir, dest, function (err) {
               if (err) throw err;
               res.json({
-                'url': path.join(img_url, name),
+                'url': path.join(img_url, name).replace(/\\/g,'/'),
                 'title': req.body.pictitle,
                 'original': filename,
                 'state': 'SUCCESS'
