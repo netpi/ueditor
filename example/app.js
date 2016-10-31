@@ -19,15 +19,19 @@ app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
 
 app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (req, res, next) {
-    // ueditor 客户发起上传图片请求
-    if (req.query.action === 'uploadimage') {
-        var foo = req.ueditor;
-
-        var imgname = req.ueditor.filename;
-
-        var img_url = '/images/ueditor/';
-        res.ue_up(img_url); //你只要输入要保存的地址 。保存操作交给ueditor来做
-        res.setHeader('Content-Type', 'text/html');//IE8下载需要设置返回头尾text/html 不然json返回文件会被直接下载打开
+    //客户端上传文件设置
+     var ActionType = req.query.action;
+    if (ActionType === 'uploadimage' || ActionType === 'uploadfile' || ActionType === 'uploadvideo') {
+        var file_url = '/img/ueditor/';//默认图片上传地址
+        /*其他上传格式的地址*/
+        if (ActionType === 'uploadfile') {
+            file_url = '/file/ueditor/'; //附件
+        }
+        if (ActionType === 'uploadvideo') {
+            file_url = '/video/ueditor/'; //视频
+        }
+        res.ue_up(file_url); //你只要输入要保存的地址 。保存操作交给ueditor来做
+        res.setHeader('Content-Type', 'text/html');
     }
     //  客户端发起图片列表请求
     else if (req.query.action === 'listimage') {
