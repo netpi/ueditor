@@ -20,23 +20,17 @@ app.set('view engine', 'html');
 
 app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (req, res, next) {
     //客户端上传文件设置
-    var file_url = '';//上传地址
-    //图片上传
-    if (req.query.action === 'uploadimage') {
-        file_url = '/img/ueditor/';
-        res.ue_up(file_url);
-        res.setHeader('Content-Type', 'text/html');
-    }
-    //附件上传
-    if (req.query.action === 'uploadfile') {
-        file_url = '/file/ueditor/';
-        res.ue_up(file_url);
-        res.setHeader('Content-Type', 'text/html');
-    }
-    //视频上传
-    if (req.query.action === 'uploadvideo') {
-        file_url = '/video/ueditor/';
-        res.ue_up(file_url);
+     var ActionType = req.query.action;
+    if (ActionType === 'uploadimage' || ActionType === 'uploadfile' || ActionType === 'uploadvideo') {
+        var file_url = '/img/ueditor/';//默认图片上传地址
+        /*其他上传格式的地址*/
+        if (ActionType === 'uploadfile') {
+            file_url = '/file/ueditor/'; //附件
+        }
+        if (ActionType === 'uploadvideo') {
+            file_url = '/video/ueditor/'; //视频
+        }
+        res.ue_up(file_url); //你只要输入要保存的地址 。保存操作交给ueditor来做
         res.setHeader('Content-Type', 'text/html');
     }
     //  客户端发起图片列表请求
