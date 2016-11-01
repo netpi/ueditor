@@ -3,7 +3,7 @@ var ejs = require('ejs');
 var path = require('path');
 var app = express();
 
-var ueditor = require("ueditor");
+var ueditor = require("../");
 var bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({
