@@ -93,6 +93,42 @@ app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function(req, res
 }}));
 
 ```
+###多类型文件上传 （附件 视频 图片）
+```javascript
+
+var bodyParser = require('body-parser')
+var ueditor = require("ueditor")
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
+app.use(bodyParser.json());
+
+app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function(req, res, next) {
+  var ActionType = req.query.action;
+    if (ActionType === 'uploadimage' || ActionType === 'uploadfile' || ActionType === 'uploadvideo') {
+        var file_url = '/img/ueditor/';//默认上传地址为图片
+        /*其他上传格式的地址*/
+        if (ActionType === 'uploadfile') {
+            file_url = '/file/ueditor/'; //附件保存地址
+        }
+        if (ActionType === 'uploadvideo') {
+            file_url = '/video/ueditor/'; //视频保存地址
+        }
+        res.ue_up(file_url); //你只要输入要保存的地址 。保存操作交给ueditor来做
+        res.setHeader('Content-Type', 'text/html');
+    }
+  //客户端发起图片列表请求
+  else if (ActionType === 'listimage'){
+    var dir_url = '/images/ueditor/';
+    res.ue_list(dir_url);  // 客户端会列出 dir_url 目录下的所有图片
+  }
+  // 客户端发起其它请求
+  else {
+    res.setHeader('Content-Type', 'application/json');
+    res.redirect('/ueditor/ueditor.config.json')
+}}));
+
+```
 
 你可以来[ueditor:nodejs](http://blog.netpi.me/nodejs/ueditor-nodejs)给作者留言
 
