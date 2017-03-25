@@ -1,4 +1,4 @@
-#Node.js : ueditor
+# Node.js : ueditor
 
 
 [UEditor](https://github.com/fex-team/ueditor) 官方支持的版本有PHP JSP ASP .NET.
@@ -15,7 +15,7 @@ ueditor for nodejs 可以让你的UEditor支持nodejs
 ```
 
 
-##Usage
+## Usage
 
 ```javascript
 
@@ -60,7 +60,7 @@ app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function(req, res
 }}));
 
 ```
-##Example
+## Example
 ```javascript
 
 var bodyParser = require('body-parser')
@@ -94,7 +94,7 @@ app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function(req, res
 }}));
 
 ```
-###多类型文件上传 （附件 视频 图片）
+### 多类型文件上传 （附件 视频 图片）
 ```javascript
 
 var bodyParser = require('body-parser')
