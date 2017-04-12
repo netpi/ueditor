@@ -28,3 +28,4 @@ node_modules
 example/public/file/ueditor/*
 example/public/img/ueditor/*
 example/public/img/images/*
+.idea/*
