@@ -70,7 +70,15 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json());
 
-app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function(req, res, next) {
+// 支持七牛上传，如有需要请配置好qn参数，如果没有qn参数则存储在本地
+app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), {
+    qn: {
+        accessKey: 'your access key',
+        secretKey: 'your secret key',
+        bucket: 'your bucket name',
+        origin: 'http://{bucket}.u.qiniudn.com'
+    }
+}, function(req, res, next) {
   // ueditor 客户发起上传图片请求
   var imgDir = '/img/ueditor/'
   if(req.query.action === 'uploadimage'){
