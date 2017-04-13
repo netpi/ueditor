@@ -60,7 +60,7 @@ app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function(req, res
 }}));
 
 ```
-## Example
+### 七牛上传
 ```javascript
 
 var bodyParser = require('body-parser')
