@@ -114,7 +114,7 @@ app.use(bodyParser.json());
 
 //FDFS config 参数配置
 var ueditorConfig = {
-	fdfs: {
+  fdfs: {
     /* Require 必须 */
     upload: {
       host: '192.168.0.40', //fdfs 上传服务器 host
@@ -129,7 +129,7 @@ var ueditorConfig = {
     charset: 'utf8', //默认为utf8
     timeout: 20 * 1000 //默认超时时间10s
     /* 可缺省 */
-	}
+  }
 };
 
 // 支持FDFS上传，upload跟download字段必填
