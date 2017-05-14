@@ -102,6 +102,62 @@ app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), {
 }}));
 
 ```
+### FDFS上传
+```javascript
+
+var bodyParser = require('body-parser')
+var ueditor = require("ueditor")
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
+app.use(bodyParser.json());
+
+//FDFS config 参数配置
+var ueditorConfig = {
+	fdfs: {
+    /* Require 必须 */
+    upload: {
+      host: '192.168.0.40', //fdfs 上传服务器 host
+      port: '22122'  // 上传服务器端口(一般默认22122)
+    },
+    download: {
+      host: '192.168.0.82' //fdfs 下载服务器host
+    },
+    /* Require 必须 */
+    /* 可缺省 */
+    defaultExt: 'jpg', //默认后缀为png
+    charset: 'utf8', //默认为utf8
+    timeout: 20 * 1000 //默认超时时间10s
+    /* 可缺省 */
+	}
+};
+
+// 支持FDFS上传，upload跟download字段必填
+app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'),  ueditorConfig, function(req, res, next) {
+  // ueditor 客户发起上传图片请求
+  var imgDir = '/img/ueditor/'
+  if(req.query.action === 'uploadimage'){
+    var foo = req.ueditor;
+
+    var imgname = req.ueditor.filename;
+
+    
+    res.ue_up(imgDir); //你只要输入要保存的地址 。保存操作交给ueditor来做
+  }
+  //  客户端发起图片列表请求
+  else if (req.query.action === 'listimage'){
+    
+    res.ue_list(imgDir);  // 客户端会列出 dir_url 目录下的所有图片
+  }
+  // 客户端发起其它请求
+  else {
+
+    res.setHeader('Content-Type', 'application/json');
+    res.redirect('/ueditor/ueditor.config.json')
+}}));
+
+```
+
 ### 多类型文件上传 （附件 视频 图片）
 ```javascript
 
@@ -138,6 +194,22 @@ app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function(req, res
     res.redirect('/ueditor/ueditor.config.json')
 }}));
 
+```
+
+### 上传配置
+```javascript
+app.use("/ueditor/ue", static_url, config = {}, callback);
+```
+当config为空时，会默认把图片上传到 static_url + '/img/ueditor' 目录下。   
+比如例子“Usage”中图片会上传到项目的 public/img/ueditor 目录。  
+
+当配置了 config.qn 图片则只会上传到七牛服务器而不会上传到项目目录。    
+同时上传到七牛和项目目录，只需配置 config.local 即可
+```javascript
+config = {
+  qn: { ... },
+  local: true 
+}
 ```
 
 你可以来[ueditor:nodejs](http://blog.netpi.me/nodejs/ueditor-nodejs)给作者留言
